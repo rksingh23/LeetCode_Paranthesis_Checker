@@ -2,31 +2,28 @@
 #include <iostream>
 #include<vector>
 
-int main() {
-  Solution solution;
-  int num=5;
+int main() 
+{
+  Check s;
+  std::string s1 = "(";
+  std::cout << s1 << std::endl;
+  std::cout<<((s.CheckValidExpression(s1))?"true":"false")<<std::endl;
 
-  std::cout << "Recursive Prime result for "<<num<< std::endl;
-  for (auto n:solution.FindPrimeRecursive(num)){
-    std::cout<<n<<std::endl;
-  }
+  std::string s2 = "()[]{}";
+  std::cout << s2 << std::endl;
+  std::cout<<((s.CheckValidExpression(s2))?"true":"false")<<std::endl;
 
-  std::cout << "Seive Prime result for "<<num<< std::endl;
-  for (auto n:solution.Prime_SieveOfEratosthenes(num)){
-    std::cout<<n<<std::endl;
-  }
+  std::string s3 = "(]";
+  std::cout << s3 << std::endl;
+  std::cout<<((s.CheckValidExpression(s3))?"true":"false")<<std::endl;
 
-  num=-1;
-
-  std::cout << "Recursive Prime result for "<<num<< std::endl;
-  for (auto n:solution.FindPrimeRecursive(num)){
-    std::cout<<n<<std::endl;
-  }
-
-  std::cout << "Seive Prime result for "<<num<< std::endl;
-  for (auto n:solution.Prime_SieveOfEratosthenes(num)){
-    std::cout<<n<<std::endl;
-  }
+  std::string s4 = "[[]])";
+  std::cout << s4 << std::endl;
+  std::cout<<((s.CheckValidExpression(s4))?"true":"false")<<std::endl;
+    
+  std::string s5 = "(([][)]";
+  std::cout << s5 << std::endl;
+  std::cout<<((s.CheckValidExpression(s5))?"true":"false")<<std::endl;
 
   return 0;
 }

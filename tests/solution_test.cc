@@ -2,96 +2,53 @@
 #include "gtest/gtest.h"
 #include <vector>
 
-
-
-TEST(FindPrimeTest, HandlesPositiveNumberSeive) {
-  Solution solution;
-
-  int num=5;
-  std::vector<int> vect1{2,3,5};
-  std::vector<int> cmp;
-  for (auto n:solution.Prime_SieveOfEratosthenes(num)){
-    cmp.push_back (n);
-  }
-  ASSERT_EQ(cmp.size(), vect1.size()) << "Vectors x and y are of unequal length";
-  for (unsigned int i = 0; i < vect1.size(); ++i){
-    EXPECT_EQ(cmp[i],vect1[i]);
-  } 
+/TEST(Q6_Student, HandlesCorrectNestedTest) 
+{
+  Check s;  
+  std::string s1 = "()[]{}([{}])";
+  EXPECT_EQ((s.CheckValidExpression(s1)), true);
 }
 
-TEST(FindPrimeTest, HandlesPositiveNumberRecursive) {
-  Solution solution;
-
-  int num=5;
-  std::vector<int> vect1{2,3,5};
-  std::vector<int> cmp;
-  for (auto n:solution.FindPrimeRecursive(num)){
-    cmp.push_back (n);
-  }
-  ASSERT_EQ(cmp.size(), vect1.size()) << "Vectors x and y are of unequal length";
-  for (unsigned int i = 0; i < vect1.size(); ++i){
-    EXPECT_EQ(cmp[i],vect1[i]);
-  } 
+TEST(Q6_Student, HandlesExpresssionAndBrackets) 
+{
+  Check s;  
+  std::string s3 = "a(a+)g[h]k{l}f";
+  EXPECT_EQ((s.CheckValidExpression(s3)), true);
 }
 
-
-TEST(FindPrimeTest, HandlesNegativeNumberSeive) {
-  Solution solution;
-
-  int num=-1;
-  std::vector<int> vect1{-1};
-  std::vector<int> cmp;
-  for (auto n:solution.Prime_SieveOfEratosthenes(num)){
-    cmp.push_back (n);
-  }
-  ASSERT_EQ(cmp.size(), vect1.size()) << "Vectors x and y are of unequal length";
-  for (unsigned int i = 0; i < vect1.size(); ++i){
-    EXPECT_EQ(cmp[i],vect1[i]);
-  } 
+TEST(Q6_Student, EmptyString) 
+{
+  Check s;
+  std::string s5;
+  EXPECT_EQ((s.CheckValidExpression(s5)), true);
 }
 
-TEST(FindPrimeTest, HandlesNegativeNumberRecursive) {
-  Solution solution;
-
-  int num=-1;
-  std::vector<int> vect1{-1};
-  std::vector<int> cmp;
-  for (auto n:solution.FindPrimeRecursive(num)){
-    cmp.push_back (n);
-  }
-  ASSERT_EQ(cmp.size(), vect1.size()) << "Vectors x and y are of unequal length";
-  for (unsigned int i = 0; i < vect1.size(); ++i){
-    EXPECT_EQ(cmp[i],vect1[i]);
-  } 
+TEST(Q6_Student, StringWithoutBrackets) 
+{
+  Check s;
+  std::string s6="+abcd--ef";
+  EXPECT_EQ((s.CheckValidExpression(s6)), true);
 }
 
+//Negative Tests
 
-TEST(FindPrimeTest, HandlesZeroSeive) {
-  Solution solution;
-
-  int num=0;
-  std::vector<int> vect1{-1};
-  std::vector<int> cmp;
-  for (auto n:solution.Prime_SieveOfEratosthenes(num)){
-    cmp.push_back (n);
-  }
-  ASSERT_EQ(cmp.size(), vect1.size()) << "Vectors x and y are of unequal length";
-  for (unsigned int i = 0; i < vect1.size(); ++i){
-    EXPECT_EQ(cmp[i],vect1[i]);
-  } 
+TEST(Q6_Student, HandlesIncorrectSequenceOfBrackets) 
+{
+  Check s;
+  std::string s4 = "(])";
+  EXPECT_EQ((s.CheckValidExpression(s4)), false);
 }
 
-TEST(FindPrimeTest, HandlesZerorRecursive) {
-  Solution solution;
+TEST(Q6_Student, HandlesExtraClosingBracket) 
+{
+  Check s;
+  std::string s2 = "()]";
+  EXPECT_EQ((s.CheckValidExpression(s2)), false);
+}
 
-  int num=0;
-  std::vector<int> vect1{-1};
-  std::vector<int> cmp;
-  for (auto n:solution.FindPrimeRecursive(num)){
-    cmp.push_back (n);
-  }
-  ASSERT_EQ(cmp.size(), vect1.size()) << "Vectors x and y are of unequal length";
-  for (unsigned int i = 0; i < vect1.size(); ++i){
-    EXPECT_EQ(cmp[i],vect1[i]);
-  } 
+TEST(Q6_Student, HandlesNoClosingBrackets) 
+{
+  Check s;
+  std::string s7 = "(";
+  EXPECT_EQ((s.CheckValidExpression(s7)), false);
 }

@@ -2,65 +2,36 @@
 #include <iostream>
 #include <bits/stdc++.h>
 
-
-std::vector<int> Solution::Prime_SieveOfEratosthenes(int &num) 
-{ 
-  std::vector<int> result;
-  std::vector<bool> visited(num+1,false); //Creates a boolean array visited, having size (o to n), all initialized as false.
-
-  if (num<=0)
-  {
-      return {-1};
-  }
-  else
-  {
-  for(int i=2;i<=num;i++)
-  {
-    if(!visited[i]) // if any number is not visited, it is a prime number
-    {
-      result.push_back(i); //add them to the result vector
-      for(int j=i+i; j<=num; j+=i)
-      {
-        visited[j]=true; //all the multiples of that number are non prime, hence invalidate them.
-      }
-    }
-  }
-  return result;
-  }
-}
-
-
-
-
-std::vector<int> Solution::FindPrimeRecursive(int &num)
+bool Check::CheckValidExpression(std::string &a)
 {
-  std::vector<int> result;
-  if (num<=0)
+  std::stack<char> stack1;
+  if(a.length() == 0) return true;                                                       //O(1)
+  for(auto i:a)                                                                          // O(n)
   {
-      return {-1};
-  }
-  else
-  {
-      for(int i=2;i<=num;i++)
+      if (((i=='[')||(i=='{')||(i=='('))) stack1.push(i);                                //if - O(1)  .push - O(1)
+      else
       {
-        Solution::globalChk = i/2;
-        if(isPrime(i))
-            result.push_back(i);
+          if(!(stack1.empty()))                                                          // O(1)
+          {
+              if      ((i ==')') && (stack1.top() == '('))   stack1.pop();               //O (1)
+              else if ((i =='}') && (stack1.top() == '{'))   stack1.pop();
+              else if ((i ==']') && (stack1.top() == '['))   stack1.pop();
+               
+               else if ((i ==')') && (stack1.top() != '('))   return false;
+               else if ((i =='}') && (stack1.top() != '{'))   return false;
+               else if ((i ==']') && (stack1.top() != '['))   return false;
+          }
+          else
+          {
+              if      (i ==')')   return false;
+              else if (i =='}')   return false;
+              else if (i ==']')   return false;
+          }
       }
   }
-  return result;
+  if(!(stack1.empty())) return false;                                                   //O(1)
+
+  return true;
 }
 
-
-bool Solution::isPrime(int &num){
-  if(globalChk==1){
-    return 1;
-  }else{
-    if(num%globalChk==0) {
-      return 0;
-    } else {
-      globalChk = globalChk-1;
-      isPrime(num);
-    }
-  }
-}
+//Worst Case Senario is O(n))

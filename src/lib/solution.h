@@ -3,16 +3,17 @@
 
 #include <string>
 #include <vector>
+#include <map>
+#include <set>
+#include <unordered_map>
+#include <iostream>
+#include <algorithm>
+#include <stack>
 
-class Solution {
-public:
-  
-  std::vector<int> FindPrimeRecursive(int &num);
-  std::vector<int> Prime_SieveOfEratosthenes(int &num); 
-  int globalChk;  
-  bool isPrime(int &num); 
 
-//private:
+class Check {
+ public:
+  bool CheckValidExpression(std::string &s);
 };
 
 #endif
